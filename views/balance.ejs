@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+
+<header>
+        <div class="container">
+            <div id="branding">
+                <h4> <span class="highlight">Suppliers </span>Accounts</h4>
+            
+            </div>
+            <nav>
+                <ul>
+                        <li class ="current"><a href = "/get">Home</a></li>
+                        <li><a href = "/laget">Lagos Report</a></li>
+                        <li><a href = "/get">Balance Report</a></li>
+                        <li><a href = "/abalance">Add Balance</a></li>
+                        <li><a href = "/ubalance">Remove Balance</a></li>
+                        <li><a href = "/insert">Add Lagos </a></li>
+                        <li><a href = "/update">Update Lagos </a></li>
+
+
+    
+                </ul>
+              
+            </nav>
+        </div>
+    </header>
+
+    
+<body>
+    <div class="container">
+          
+   
+
+        <form id="contact" action="/balance" method="POST" >
+            <% if ( success_messages !='' ) { %>
+                <div class="alert alert-success" >
+                    <strong><%= success_messages %> </strong>
+                </div>
+                <% } %>
+
+            <% if ( error != '' ) { %>
+                    <div class="alert alert-success" >
+                        <strong><%= error %> </strong>
+                    </div>
+            <% } %>
+
+          <h4>Start Balance</h4>
+        
+          <fieldset> <h3> Date</h3> <input name = "date"  placeholder="Date" type="date" /></fieldset>
+          <fieldset>  <h3>Total Balance</h3> <input name = "balance" placeholder="Address" id = "balance" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"  /></fieldset>
+          
+         
+          <button type="submit" class="btn">Submit</button>
+        </form>
+  </div> 
+
+  <script>
+    function substract() {
+        var balance =parseInt(document.getElementById("balance").value);
+        var adding = parseInt(document.getElementById("adding").value);
+        var result = pbalance + adding;
+        
+        
+        
+            document.getElementById("tbalance").value = result;
+       
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+
+<header>
+        <div class="container">
+            <div id="branding">
+                <h4> <span class="highlight">Suppliers </span>Accounts</h4>
+            
+            </div>
+     
+            <nav>
+                <ul>
+                        <li ><a href = "/get">Home</a></li>
+                        <li><a href = "/laget">Lagos Report</a></li>
+                        <li><a href = "/get">Balance Report</a></li>
+                        <li><a href = "/abalance">Add Balance</a></li>
+                        <li><a href = "/ubalance">Remove Balance</a></li>
+                        <li><a href = "/insert">Add Lagos </a></li>
+                        <li class ="current" ><a href = "/update">Update Lagos </a></li>
+                   
+                </ul>
+              
+            </nav>
+        </div>
+    </header>
+
+    
+<body>
+        
+    <div class="container">
+
+
+            
+        <form id="contact" action="/update" method="POST" >
+            <% if ( success_messages !='' ) { %>
+                <div class="alert alert-success" >
+                    <strong><%= success_messages %> </strong>
+                </div>
+                <% } %>
+
+            <% if ( error != '' ) { %>
+                    <div class="alert alert-success" >
+                        <strong><%= error %> </strong>
+                    </div>
+            <% } %>
+        
+          <h4>Update Lagos Supply</h4>
+          
+          <fieldset> Date <input name = "date"  placeholder="Date" type="date" /></fieldset>
+          <fieldset> <h3> Amount Owned </h3> <input name = "owned" value="<%= data.owned %>" placeholder="Address" id = "owned" type="text" AutoPostBack="true" runat="server" onkeyup="substract()" /></fieldset>
+          <fieldset>  <h3>Amount Paid Before</h3> <input name = "paidb" value="<%= tot %>" placeholder="Amount Paid Before" id = "paidb" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"  /></fieldset>
+          <fieldset>   <h3>Amount Paid Now</h3> <input name = "paidn" placeholder="Enter Paying Now" id = "paidn" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"  /></fieldset>
+          <fieldset>   <h3>Amount Remaining</h3> <input name = "remain" value = "<%= data.remain %>" placeholder="Amount Remaining" id = "remain" type="text" AutoPostBack="true" runat="server" onkeyup="substract()" /></fieldset>
+         
+          <button type="submit" class="btn">Submit</button>
+        </form>
+  </div> 
+
+  <script>
+    function substract() {
+        var owned =parseInt(document.getElementById("owned").value);
+        var paidb = parseInt(document.getElementById("paidb").value);
+        var paidn = parseInt(document.getElementById("paidn").value);
+        var result = (owned - (paidb + paidn));
+        
+        
+        
+            document.getElementById("remain").value = result;
+       
+
+    }
+</script>
+</body>
+</html>

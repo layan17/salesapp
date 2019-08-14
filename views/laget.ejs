@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+        <header>
+                <div class="container">
+                    <div id="branding">
+                        <h4> <span class="highlight">Suppliers </span>Accounts</h4>
+                    
+                    </div>
+                    <nav>
+                        <ul>
+                                <li ><a href = "/get">Home</a></li>
+                                <li class ="current" ><a href = "/laget">Lagos Report</a></li>
+                                <li><a href = "/get">Balance Report</a></li>
+                                <li><a href = "/abalance">Add Balance</a></li>
+                                <li><a href = "/ubalance">Remove Balance</a></li>
+                                <li><a href = "/insert">Add Lagos </a></li>
+                                <li><a href = "/update">Update Lagos </a></li>
+                        </ul> 
+                    </nav>
+                </div>
+            </header>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        <table class="rtable" >  
+                <thead>
+                <tr>  
+                        <th>Collected Date</th>
+                        <th>Amount Owned</th>
+                        <th>Payments Details</th>
+                        <th>Remaining </th>
+                    </tr> 
+                </thead> 
+                <% data.forEach(function(item) { %>
+                <tbody>
+                <tr>  
+                    <td ><%= moment(item.date[0]).format("MMMM Do, YYYY") %></td>
+                    <td ><span>&#8358;</span> <%= item.owned.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                   
+                    
+                    <td>
+                            <table class="rtable" > 
+                                    <thead>
+                       
+                            <tr>  
+                                <th>Date</th>
+                                <th>Payments</th>
+                            </tr> 
+                          </thead>
+                    
+                          <tbody>
+                            <tr>
+                                <td >
+                    <% for (var i = 0; i < item.date.length; i++) { %>
+                        <%= moment(item.date[i]).format("MMMM Do, YYYY") %><br>
+                    <% } %>  
+                             </td>
+
+                       <td >
+                        <% for (var i = 0; i < item.date.length; i++) { %>
+                            <span>&#8358;</span> <%= item.paid[i].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %><br>
+                        <% } %>
+                     </td>
+
+                     </tr> 
+                    </tbody>
+                    </table>  
+                </body>
+                   
+                </td>  
+                <td><%= item.remain %></td>
+            </tr> 
+            </tbody>
+                <% }); %>       
+        </table>  
+</body>
+</html>
+
