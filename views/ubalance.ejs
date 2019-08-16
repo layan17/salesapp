@@ -15,61 +15,83 @@
                 <h4> <span class="highlight">Suppliers </span>Accounts</h4>
             
             </div>
-            <nav>
-                <ul>
-                        <li><a href = "/get">Home</a></li>
-                        <li><a href = "/laget">Lagos Report</a></li>
-                        <li><a href = "/get">Balance Report</a></li>
-                        <li><a href = "/abalance">Add Balance</a></li>
-                        <li  class ="current" ><a href = "/ubalance">Remove Balance</a></li>
-                        <li><a href = "/insert">Add Lagos </a></li>
-                        <li><a href = "/update">Update Lagos </a></li>
-                </ul>
-              
-            </nav>
         </div>
     </header>
+
+    <% include ./navmenu %>
 
     
 <body>
         
-    <div class="container">
 
-
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+          <div class="card card-body">
+            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Remove Balance</h1>
+    
             
-        <form id="contact" action="/ubalance" method="POST" >
-
             <% if ( success_messages !='' ) { %>
                 <div class="alert alert-success" >
                     <strong><%= success_messages %> </strong>
                 </div>
                 <% } %>
-
+    
             <% if ( error != '' ) { %>
                     <div class="alert alert-success" >
                         <strong><%= error %> </strong>
                     </div>
             <% } %>
-          <h4>Remove From Balance</h4>
-          
-          <fieldset><h3> Date</h3> <input name = "date"  placeholder="Date" type="date" /></fieldset>
-          <fieldset> <h3> Total Balance </h3> <input name = "tbalance" value="<%= data.balance %>" placeholder="Address" id = "tbalance" type="text" AutoPostBack="true" runat="server" onkeyup="substract()" /></fieldset>
-          <fieldset>  <h3>Amount Removing</h3> <input name = "removes"  placeholder="Amount Paid Before" id = "removes" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"  /></fieldset>
-          <fieldset>   <h3>New Total Balance</h3> <input name = "nbalance" placeholder="Enter Paying Now" id = "nbalance" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"  /></fieldset>
-          
-         
-          <button type="submit" class="btn">Submit</button>
-        </form>
-  </div> 
+    
+            <form action="/ubalance" method="POST">
+              <div class="form-group">
+                <label for="email">Date</label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  class="form-control"
+                  placeholder="Enter Date"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Previous Balance</label>
+                <input
+                name = "tbalance" value="<%= data.balance %>"  id = "tbalance" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"
+                  class="form-control"
+                  placeholder="Previous Balance"
+                />
+              </div>
+    
+              <div class="form-group">
+                <label for="password">Amount Removing</label>
+                <input
+                name = "removes"  id = "removes" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"
+                  class="form-control"
+                  placeholder="Amount Adding"
+                />
+              </div>
+    
+              
+              <div class="form-group">
+                <label for="password">New Total Balance</label>
+                <input
+                name = "nbalance"  id = "nbalance" type="text" AutoPostBack="true" runat="server" onkeyup="substract()"
+                  class="form-control"
+                  placeholder="New Balance"
+                />
+              </div>
+    
+              <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
   <script>
     function substract() {
         var tbalance =parseInt(document.getElementById("tbalance").value);
         var removes = parseInt(document.getElementById("removes").value);
         var result = tbalance - removes;
-        
-        
-        
             document.getElementById("nbalance").value = result;
        
 

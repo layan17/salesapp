@@ -8,6 +8,7 @@ var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var expressLayouts = require('express-ejs-layouts');
 
 var app = express();
 
@@ -20,6 +21,9 @@ app.use(
     saveUninitialized: true
   })
 );
+
+// layouts
+app.use(expressLayouts);
 
 //flash message
 app.use(flash());
